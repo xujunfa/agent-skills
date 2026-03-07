@@ -1,0 +1,133 @@
+version: 1
+created: "2026-03-06"
+tool_name: "openclaw"
+tool_nature: "Framework"
+
+sources:
+  - id: "official-docs"
+    url: "https://docs.openclaw.ai/"
+    type: official_docs
+    priority: 1
+    last_fetched: "2026-03-06"
+    version_anchor: "v2026.3.2"
+    mapped_to: "references/gateway-and-config.md"
+    status: active
+
+  - id: "github-readme"
+    url: "https://github.com/openclaw/openclaw"
+    type: github_readme
+    priority: 1
+    last_fetched: "2026-03-06"
+    version_anchor: "v2026.3.2"
+    mapped_to: "references/gateway-and-config.md"
+    status: active
+
+  - id: "troubleshooting-docs"
+    url: "https://docs.openclaw.ai/gateway/troubleshooting"
+    type: official_docs
+    priority: 1
+    last_fetched: "2026-03-06"
+    version_anchor: "v2026.3.2"
+    mapped_to: "references/troubleshooting.md"
+    status: active
+
+  - id: "clawhub-docs"
+    url: "https://docs.openclaw.ai/tools/clawhub"
+    type: official_docs
+    priority: 2
+    last_fetched: "2026-03-06"
+    version_anchor: "v2026.3.2"
+    mapped_to: "references/skills-and-tools.md"
+    status: active
+
+  - id: "github-releases"
+    url: "https://github.com/openclaw/openclaw/releases"
+    type: changelog
+    priority: 2
+    last_fetched: "2026-03-06"
+    version_anchor: "v2026.3.2"
+    mapped_to: "references/gateway-and-config.md"
+    status: active
+
+  - id: "use-cases-community"
+    url: "https://openclaw.rocks/blog/openclaw-use-cases"
+    type: community_blog
+    priority: 2
+    last_fetched: "2026-03-06"
+    version_anchor: "v2026.3.2"
+    mapped_to: "references/use-cases-and-recipes.md"
+    status: active
+
+  - id: "use-cases-skywork"
+    url: "https://skywork.ai/blog/ai-agent/openclaw-use-cases/"
+    type: community_blog
+    priority: 3
+    last_fetched: "2026-03-06"
+    version_anchor: "v2026.3.2"
+    mapped_to: "references/use-cases-and-recipes.md"
+    status: active
+
+  - id: "automation-docs"
+    url: "https://docs.openclaw.ai/automation/cron-jobs"
+    type: official_docs
+    priority: 1
+    last_fetched: "2026-03-06"
+    version_anchor: "v2026.3.2"
+    mapped_to: "references/automation-patterns.md"
+    status: active
+
+  - id: "heartbeat-docs"
+    url: "https://docs.openclaw.ai/automation/cron-vs-heartbeat"
+    type: official_docs
+    priority: 1
+    last_fetched: "2026-03-06"
+    version_anchor: "v2026.3.2"
+    mapped_to: "references/automation-patterns.md"
+    status: active
+
+  - id: "workflow-recipes"
+    url: "https://clawtank.dev/blog/openclaw-workflow-automation-recipes"
+    type: community_blog
+    priority: 2
+    last_fetched: "2026-03-06"
+    version_anchor: "v2026.3.2"
+    mapped_to: "references/automation-patterns.md"
+    status: active
+
+  - id: "docker-docs"
+    url: "https://docs.openclaw.ai/install/docker"
+    type: official_docs
+    priority: 1
+    last_fetched: "2026-03-06"
+    version_anchor: "v2026.3.2"
+    mapped_to: "references/deployment-and-hardening.md"
+    status: active
+
+  - id: "security-hardening-guide"
+    url: "https://www.digitalapplied.com/blog/openclaw-security-hardening-guide-2026"
+    type: community_blog
+    priority: 2
+    last_fetched: "2026-03-06"
+    version_anchor: "v2026.3.2"
+    mapped_to: "references/deployment-and-hardening.md"
+    status: active
+
+  - id: "multi-agent-docs"
+    url: "https://docs.openclaw.ai/concepts/multi-agent"
+    type: official_docs
+    priority: 1
+    last_fetched: "2026-03-06"
+    version_anchor: "v2026.3.2"
+    mapped_to: "references/use-cases-and-recipes.md"
+    status: active
+
+  - id: "coding-agent-skill"
+    url: "https://github.com/openclaw/openclaw/blob/main/skills/coding-agent/SKILL.md"
+    type: github_source
+    priority: 2
+    last_fetched: "2026-03-06"
+    version_anchor: "v2026.3.2"
+    mapped_to: "references/use-cases-and-recipes.md"
+    status: active
+
+last_evolved: "2026-03-06"

@@ -1,0 +1,71 @@
+version: 1
+created: "2026-03-06"
+tool_name: "cc-agent-teams"
+tool_nature: "CLI tool"
+
+sources:
+  - id: "official-agent-teams"
+    url: "https://code.claude.com/docs/en/agent-teams"
+    type: official_docs
+    priority: 1
+    last_fetched: "2026-03-06"
+    version_anchor: "Claude Code 2.1.x"
+    mapped_to: "references/architecture-and-setup.md"
+    status: active
+
+  - id: "official-subagents"
+    url: "https://code.claude.com/docs/en/sub-agents"
+    type: official_docs
+    priority: 1
+    last_fetched: "2026-03-06"
+    version_anchor: "Claude Code 2.1.x"
+    mapped_to: "references/subagents-and-comparison.md"
+    status: active
+
+  - id: "anthropic-c-compiler"
+    url: "https://www.anthropic.com/engineering/building-c-compiler"
+    type: blog_post
+    priority: 2
+    last_fetched: "2026-03-06"
+    version_anchor: "Claude Code 2.1.x"
+    mapped_to: "references/use-cases-and-patterns.md"
+    status: active
+
+  - id: "addy-osmani-swarms"
+    url: "https://addyosmani.com/blog/claude-code-agent-teams/"
+    type: blog_post
+    priority: 2
+    last_fetched: "2026-03-06"
+    version_anchor: "Claude Code 2.1.x"
+    mapped_to: "references/best-practices-and-troubleshooting.md"
+    status: active
+
+  - id: "claudefast-guide"
+    url: "https://claudefa.st/blog/guide/agents/agent-teams"
+    type: blog_post
+    priority: 2
+    last_fetched: "2026-03-06"
+    version_anchor: "Claude Code 2.1.x"
+    mapped_to: "references/use-cases-and-patterns.md"
+    status: active
+
+  - id: "claudefast-controls"
+    url: "https://claudefa.st/blog/guide/agents/agent-teams-controls"
+    type: blog_post
+    priority: 3
+    last_fetched: "2026-03-06"
+    version_anchor: "Claude Code 2.1.x"
+    mapped_to: "references/task-system-and-communication.md"
+    status: active
+
+  - id: "orchestration-research"
+    url: "external-agent-research"
+    type: synthesized_research
+    priority: 2
+    last_fetched: "2026-03-06"
+    version_anchor: "Claude Code 2.1.x"
+    mapped_to: "references/orchestration-design-guide.md"
+    status: active
+    notes: "Based on Anthropic blog, Addy Osmani, ClaudeFast, VoltAgent, Medium/Reddit/X community 2026 Q1"
+
+last_evolved: "2026-03-06"

@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skill 解构：<!-- REPLACE: skill name --></title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<style>
+/* ============================================================
+   Skill Deconstructor — Visual Card Template
+   Replace CSS variable values based on Skill type:
+     Technique:  --accent: #2563EB; --accent-light: #EFF6FF; --accent-mid: #BFDBFE;
+     Discipline: --accent: #EA580C; --accent-light: #FFF7ED; --accent-mid: #FED7AA;
+     Pattern:    --accent: #7C3AED; --accent-light: #F5F3FF; --accent-mid: #DDD6FE;
+     Reference:  --accent: #059669; --accent-light: #ECFDF5; --accent-mid: #A7F3D0;
+   ============================================================ */
+
+/* --- Reset & Variables --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --accent: #2563EB;
+  --accent-light: #EFF6FF;
+  --accent-mid: #BFDBFE;
+  --bg: #FFFFFF;
+  --bg-page: #F8FAFC;
+  --text: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --border: #E2E8F0;
+  --radius: 12px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.03);
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+
+/* --- Base --- */
+body {
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: var(--bg-page);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Top accent bar */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--accent);
+  z-index: 100;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 1.5rem;
+}
+
+/* --- Grid --- */
+.grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 900px) {
+  .grid-2col { grid-template-columns: 1fr; }
+}
+
+/* --- Hero --- */
+.hero {
+  background: linear-gradient(135deg, var(--accent-light) 0%, var(--bg) 100%);
+  border: 1px solid var(--accent-mid);
+  border-radius: var(--radius);
+  padding: 2.5rem 2rem;
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.75rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.625rem;
+}
+
+.hero .summary {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto 0.5rem;
+}
+
+.hero .audience {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* --- Card --- */
+.card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.card-full { margin-bottom: 1.25rem; }
+
+.card-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.card h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.375rem;
+}
+
+.card p, .card li {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.subsection { margin-bottom: 1rem; }
+.subsection:last-child { margin-bottom: 0; }
+.subsection-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.375rem;
+}
+
+/* --- Tags --- */
+.tag-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tag {
+  background: var(--accent-light);
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+/* --- File Tree (redesigned) --- */
+.file-tree {
+  background: var(--bg-page);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.ft-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0.35rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.12s;
+}
+
+.ft-row:last-child { border-bottom: none; }
+.ft-row:hover { background: var(--accent-light); }
+
+.ft-row.ft-dir { background: rgba(0,0,0,0.015); }
+
+.ft-connector {
+  color: var(--text-muted);
+  user-select: none;
+  white-space: pre;
+  flex-shrink: 0;
+}
+
+.ft-icon {
+  flex-shrink: 0;
+  margin-right: 0.4rem;
+  font-size: 0.75rem;
+  opacity: 0.75;
+}
+
+.ft-name {
+  color: var(--text);
+  font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.ft-name.core {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.ft-name.dir {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.ft-role {
+  margin-left: auto;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: right;
+  padding-left: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 55%;
+}
+
+.ft-badge {
+  margin-left: 0.5rem;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+/* --- Mermaid --- */
+.mermaid-wrap {
+  overflow-x: auto;
+  margin: 0 -0.75rem;
+  padding: 1rem 0.75rem;
+  display: flex;
+  justify-content: center;
+  background: var(--bg-page);
+  border-radius: 8px;
+}
+
+.mermaid-wrap .mermaid {
+  min-width: 0;
+  max-width: 85%;
+  margin: 0 auto;
+}
+
+.mermaid-wrap svg {
+  display: block;
+  max-width: 100%;
+  min-height: 280px;
+  height: auto;
+}
+
+/* Make Mermaid node text more readable */
+.mermaid-wrap .nodeLabel {
+  font-size: 15px !important;
+  line-height: 1.4 !important;
+}
+
+.mermaid-wrap .edgeLabel {
+  font-size: 13px !important;
+  background: var(--bg) !important;
+  padding: 2px 6px !important;
+}
+
+/* --- Highlights --- */
+.highlight-item {
+  padding: 1rem 1.125rem;
+  background: var(--bg-page);
+  border-radius: 8px;
+  border-left: 3px solid var(--accent);
+  margin-bottom: 0.75rem;
+}
+.highlight-item:last-child { margin-bottom: 0; }
+.highlight-item p { margin-bottom: 0.25rem; }
+.highlight-item blockquote {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+  border-left: 2px solid var(--border);
+  padding-left: 0.75rem;
+  margin-top: 0.375rem;
+}
+
+/* --- Dependencies --- */
+.dep-group { margin-bottom: 1rem; }
+.dep-group:last-child { margin-bottom: 0; }
+.dep-group-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 0.375rem;
+}
+.dep-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+  font-size: 0.88rem;
+}
+.dep-item::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  margin-top: 0.5em;
+}
+.dep-item code {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  background: var(--bg-page);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+
+/* --- Quality Assessment --- */
+.score-header { text-align: center; margin-bottom: 1.5rem; }
+.total-score {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+.total-score span {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+.score-rating {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+}
+
+.score-bars { max-width: 520px; margin: 0 auto; }
+.score-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.625rem;
+}
+.score-label {
+  width: 110px;
+  flex-shrink: 0;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  text-align: right;
+}
+.score-bar {
+  flex: 1;
+  height: 8px;
+  background: var(--bg-page);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.score-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 4px;
+}
+.score-val {
+  width: 32px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.improvements {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.improvements h3 {
+  font-size: 0.85rem;
+  margin-bottom: 0.625rem;
+}
+.improvements ul { list-style: none; }
+.improvements li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 0.375rem;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+.improvements li::before {
+  content: '\2192';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* --- Footer --- */
+footer {
+  text-align: center;
+  padding: 2rem 0 0.5rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+footer a { color: var(--accent); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  <!-- ==================== HERO ==================== -->
+  <header class="hero">
+    <div class="badge"><!-- REPLACE: Type label, e.g. "Technique" --></div>
+    <h1><!-- REPLACE: Skill name --></h1>
+    <p class="summary"><!-- REPLACE: One-line summary from D1 --></p>
+    <p class="audience"><!-- REPLACE: Target audience from D1 --></p>
+  </header>
+
+  <!-- ==================== ROW 1: Positioning + Architecture ==================== -->
+  <div class="grid-2col">
+
+    <section class="card">
+      <div class="card-title">定位 &amp; 触发条件</div>
+      <div class="subsection">
+        <div class="subsection-label">解决的问题</div>
+        <p><!-- REPLACE: Problem statement from D2 --></p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-label">触发条件</div>
+        <div class="tag-list">
+          <!-- REPLACE: One <span class="tag">keyword</span> per trigger condition -->
+        </div>
+      </div>
+      <!-- OPTIONAL: Only include if exclusions exist -->
+      <div class="subsection">
+        <div class="subsection-label">不适用场景</div>
+        <p><!-- REPLACE: Exclusion text from D2 --></p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-title">文件架构</div>
+      <div class="file-tree">
+        <!-- REPLACE: One <div class="ft-row"> per file/directory.
+             For core files add class="core" to ft-name and add <span class="ft-badge">核心</span>.
+             For directories add class="ft-dir" to ft-row and class="dir" to ft-name.
+             Use ft-connector for tree lines: "├─ " / "└─ " / "│  " etc.
+             Example:
+        <div class="ft-row ft-dir">
+          <span class="ft-connector"></span>
+          <span class="ft-icon">📁</span>
+          <span class="ft-name dir">skill-deconstructor/</span>
+        </div>
+        <div class="ft-row">
+          <span class="ft-connector">├─ </span>
+          <span class="ft-icon">📄</span>
+          <span class="ft-name core">SKILL.md</span>
+          <span class="ft-badge">核心</span>
+          <span class="ft-role">主工作流程</span>
+        </div>
+        <div class="ft-row">
+          <span class="ft-connector">└─ </span>
+          <span class="ft-icon">📁</span>
+          <span class="ft-name dir">references/</span>
+          <span class="ft-role">参考资料目录</span>
+        </div>
+        <div class="ft-row">
+          <span class="ft-connector">   ├─ </span>
+          <span class="ft-icon">📄</span>
+          <span class="ft-name">guide.md</span>
+          <span class="ft-role">详细分析规则</span>
+        </div>
+        -->
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ==================== FULL WIDTH: Core Workflow ==================== -->
+  <section class="card card-full">
+    <div class="card-title">核心工作流</div>
+    <div class="mermaid-wrap">
+      <pre class="mermaid">
+      <!-- REPLACE: Mermaid flowchart TD code from D4 -->
+      </pre>
+    </div>
+  </section>
+
+  <!-- ==================== ROW 2: Highlights + Dependencies ==================== -->
+  <div class="grid-2col">
+
+    <section class="card">
+      <div class="card-title">设计亮点</div>
+      <!-- REPLACE: One highlight-item per highlight from D5 -->
+      <!-- Example:
+      <div class="highlight-item">
+        <h3>优雅降级</h3>
+        <p>三级 fallback 确保输出质量随可用工具自适应调整。</p>
+        <blockquote>"若 ui-ux-pro-max 不可用，则搜索替代品；若无替代品，则使用内置默认样式。"</blockquote>
+      </div>
+      -->
+    </section>
+
+    <section class="card">
+      <div class="card-title">依赖 &amp; 集成</div>
+      <!-- REPLACE: One dep-group per category from D6 -->
+      <!-- Example:
+      <div class="dep-group">
+        <div class="dep-group-title">外部工具</div>
+        <div class="dep-item"><code>python3</code> — 脚本执行</div>
+        <div class="dep-item"><code>playwright</code> — 浏览器自动化</div>
+      </div>
+      <div class="dep-group">
+        <div class="dep-group-title">Skill 依赖</div>
+        <div class="dep-item"><code>mermaid-diagrams</code> — 流程图生成</div>
+      </div>
+      -->
+    </section>
+
+  </div>
+
+  <!-- ==================== FULL WIDTH: Quality Assessment ==================== -->
+  <section class="card card-full">
+    <div class="card-title">质量评分</div>
+    <div class="score-header">
+      <div class="total-score"><!-- REPLACE: total --><span> / 25</span></div>
+      <div class="score-rating"><!-- REPLACE: rating label, e.g. "良好" --></div>
+    </div>
+    <div class="score-bars">
+      <!-- REPLACE: One score-row per dimension. Set bar width as percentage (score/5*100)% -->
+      <!-- Example:
+      <div class="score-row">
+        <div class="score-label">描述质量</div>
+        <div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div>
+        <div class="score-val">4/5</div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">Token 效率</div>
+        <div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div>
+        <div class="score-val">3/5</div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">可发现性</div>
+        <div class="score-bar"><div class="score-bar-fill" style="width:100%"></div></div>
+        <div class="score-val">5/5</div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">完整性</div>
+        <div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div>
+        <div class="score-val">4/5</div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">防御性</div>
+        <div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div>
+        <div class="score-val">3/5</div>
+      </div>
+      -->
+    </div>
+    <div class="improvements">
+      <h3>改进建议</h3>
+      <ul>
+        <!-- REPLACE: One <li> per suggestion (max 3) -->
+      </ul>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    由 <a href="#">skill-deconstructor</a> 生成 &middot; <!-- REPLACE: generation date -->
+  </footer>
+
+</div>
+
+<script>
+  // REPLACE: Set themeVariables colors to match the Skill type's accent hex values.
+  // Do NOT use CSS var() here — Mermaid requires literal hex values.
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'base',
+    flowchart: { padding: 18, useMaxWidth: false, nodeSpacing: 30, rankSpacing: 40 },
+    themeVariables: {
+      primaryColor: '#EFF6FF',
+      primaryTextColor: '#1E3A5F',
+      primaryBorderColor: '#2563EB',
+      lineColor: '#94A3B8',
+      fontFamily: 'system-ui, -apple-system, sans-serif',
+      fontSize: '16px'
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+version: 1
+created: "2026-03-06"
+tool_name: "claude-code"
+tool_nature: "CLI tool"
+
+sources:
+  - id: "cli-reference"
+    url: "https://code.claude.com/docs/en/cli-reference"
+    type: official_docs
+    priority: 1
+    last_fetched: "2026-03-06"
+    version_anchor: "v2.1.63"
+    mapped_to: "references/cli-commands.md"
+    status: active
+
+  - id: "best-practices"
+    url: "https://code.claude.com/docs/en/best-practices"
+    type: official_docs
+    priority: 1
+    last_fetched: "2026-03-06"
+    version_anchor: "v2.1.63"
+    mapped_to: "references/best-practices.md"
+    status: active
+
+  - id: "mcp-docs"
+    url: "https://code.claude.com/docs/en/mcp"
+    type: official_docs
+    priority: 1
+    last_fetched: "2026-03-06"
+    version_anchor: "v2.1.63"
+    mapped_to: "references/mcp-and-hooks.md"
+    status: active
+
+  - id: "permissions-docs"
+    url: "https://code.claude.com/docs/en/permissions"
+    type: official_docs
+    priority: 1
+    last_fetched: "2026-03-06"
+    version_anchor: "v2.1.63"
+    mapped_to: "references/config-and-permissions.md"
+    status: active
+
+  - id: "subagents-docs"
+    url: "https://code.claude.com/docs/en/sub-agents"
+    type: official_docs
+    priority: 1
+    last_fetched: "2026-03-06"
+    version_anchor: "v2.1.63"
+    mapped_to: "references/agents-and-skills.md"
+    status: active
+
+  - id: "hooks-guide"
+    url: "https://code.claude.com/docs/en/hooks-guide"
+    type: official_docs
+    priority: 1
+    last_fetched: "2026-03-06"
+    version_anchor: "v2.1.63"
+    mapped_to: "references/mcp-and-hooks.md"
+    status: active
+
+  - id: "github-repo"
+    url: "https://github.com/anthropics/claude-code"
+    type: github_readme
+    priority: 2
+    last_fetched: "2026-03-06"
+    version_anchor: "v2.1.63"
+    mapped_to: "references/cli-commands.md"
+    status: active
+
+  - id: "shipyard-cheatsheet"
+    url: "https://shipyard.build/blog/claude-code-cheat-sheet/"
+    type: blog_post
+    priority: 3
+    last_fetched: "2026-03-06"
+    version_anchor: "v2.1.63"
+    mapped_to: "references/best-practices.md"
+    status: active

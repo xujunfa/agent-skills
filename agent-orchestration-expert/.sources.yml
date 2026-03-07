@@ -1,0 +1,113 @@
+version: 1
+created: "2026-03-07"
+tool_name: "agent-orchestration"
+tool_nature: "Framework"
+
+sources:
+  - id: "openclaw-multi-agent-docs"
+    url: "https://docs.openclaw.ai/concepts/multi-agent"
+    type: official_docs
+    priority: 1
+    last_fetched: "2026-03-07"
+    version_anchor: "v2026.3.x"
+    mapped_to: "references/architecture-and-decisions.md"
+    status: active
+
+  - id: "openclaw-gateway-config"
+    url: "https://docs.openclaw.ai/gateway/configuration"
+    type: official_docs
+    priority: 1
+    last_fetched: "2026-03-07"
+    version_anchor: "v2026.3.x"
+    mapped_to: "references/architecture-and-decisions.md"
+    status: active
+
+  - id: "openclaw-cli-agents"
+    url: "https://docs.openclaw.ai/cli/agents"
+    type: official_docs
+    priority: 1
+    last_fetched: "2026-03-07"
+    version_anchor: "v2026.3.x"
+    mapped_to: "references/monitoring-and-intervention.md"
+    status: active
+
+  - id: "tmux-agents-skill"
+    url: "https://lobehub.com/skills/openclaw-skills-tmux-agents"
+    type: official_docs
+    priority: 2
+    last_fetched: "2026-03-07"
+    version_anchor: "2026-02-21"
+    mapped_to: "references/tmux-setup-and-layouts.md"
+    status: active
+
+  - id: "codex-cli-reference"
+    url: "https://developers.openai.com/codex/cli/reference/"
+    type: api_reference
+    priority: 1
+    last_fetched: "2026-03-07"
+    version_anchor: "2026.2"
+    mapped_to: "references/architecture-and-decisions.md"
+    status: active
+
+  - id: "claude-code-cli-worktree"
+    url: "https://code.claude.com/docs/en/cli-reference"
+    type: official_docs
+    priority: 1
+    last_fetched: "2026-03-07"
+    version_anchor: "2.1.x"
+    mapped_to: "references/worktree-and-dispatch.md"
+    status: active
+
+  - id: "workmux"
+    url: "https://github.com/raine/workmux"
+    type: github_readme
+    priority: 2
+    last_fetched: "2026-03-07"
+    version_anchor: "2026.3"
+    mapped_to: "references/tmux-setup-and-layouts.md"
+    status: active
+
+  - id: "ittybitty"
+    url: "https://github.com/adamwulf/ittybitty"
+    type: github_readme
+    priority: 2
+    last_fetched: "2026-03-07"
+    version_anchor: "2026.1"
+    mapped_to: "references/tmux-setup-and-layouts.md"
+    status: active
+
+  - id: "tmux-resurrect"
+    url: "https://github.com/tmux-plugins/tmux-resurrect"
+    type: github_readme
+    priority: 2
+    last_fetched: "2026-03-07"
+    version_anchor: "latest"
+    mapped_to: "references/resilience-and-production.md"
+    status: active
+
+  - id: "tmux-continuum"
+    url: "https://github.com/tmux-plugins/tmux-continuum"
+    type: github_readme
+    priority: 2
+    last_fetched: "2026-03-07"
+    version_anchor: "latest"
+    mapped_to: "references/resilience-and-production.md"
+    status: active
+
+  - id: "tmuxinator"
+    url: "https://github.com/tmuxinator/tmuxinator"
+    type: github_readme
+    priority: 2
+    last_fetched: "2026-03-07"
+    version_anchor: "latest"
+    mapped_to: "references/tmux-setup-and-layouts.md"
+    status: active
+
+  - id: "tmx-claude-gist"
+    url: "https://gist.github.com/andynu/13e362f7a5e69a9f083e7bca9f83f60a"
+    type: github_readme
+    priority: 3
+    last_fetched: "2026-03-07"
+    version_anchor: "latest"
+    mapped_to: "references/worktree-and-dispatch.md"
+    status: active
