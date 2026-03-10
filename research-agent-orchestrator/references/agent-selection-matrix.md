@@ -45,7 +45,7 @@ Capability profiles and routing heuristics for external research agents.
 | Reasoning quality | Good | Reasonable analysis capability |
 | Recency / live-web | Very strong | Real-time X/social media access, very recent web data |
 | Synthesis quality | Adequate | Less polished long-form output |
-| Long-context handling | Adequate | Standard context limits |
+| Long-context handling | Good | Context limits have expanded significantly; verify current limits before routing large-document tasks |
 | Execution-oriented | Adequate | Better at information gathering than action planning |
 | Ambiguity reduction | Good | Good at surfacing diverse viewpoints from social signals |
 
@@ -128,7 +128,7 @@ START: What does the research primarily need?
 ## Anti-Patterns
 
 - **Don't use Grok for deep technical synthesis** — it's a recency/signal tool, not a reasoning engine.
-- **Don't assume Claude can browse the web** — standard chat has no browsing; check the deployment context. Pre-gather material if browsing is unavailable.
+- **Don't assume Claude always — or never — has web browsing** — capability depends on the deployment and access method. Verify before routing; pre-gather material if browsing is unavailable.
 - **Don't send the same generic prompt to all agents** — tailor each prompt to the agent's strengths.
 - **Don't default to multi-agent when single suffices** — complexity has a cost (user effort, time).
 - **Don't hardcode "Agent X is always best for Y"** — capabilities evolve; use these as heuristics, not rules.
