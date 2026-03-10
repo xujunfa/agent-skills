@@ -2,6 +2,8 @@
 
 Reusable multi-agent coordination templates. Each pattern describes when to use it, the agent flow, and how to handle the handoff between stages.
 
+> **Note:** Agent names in "Common instantiations" tables are examples based on typical strengths, not fixed assignments. Verify current capabilities before routing.
+
 ## Pattern 1: Gather → Synthesize (Serial)
 
 **When:** Need both breadth/recency AND deep analysis. One agent gathers raw material, another produces the final deliverable.
@@ -61,7 +63,23 @@ Agent C ─┘
 - Do NOT tell agents about each other — keep perspectives independent
 
 **Synthesis step:**
-After collecting results, either manually compare or generate a synthesis prompt:
+After collecting results, either manually compare or generate a synthesis prompt.
+Adapt the template to the actual number of agents dispatched (2 or 3):
+
+*2-agent variant:*
+```
+You have received independent research reports on {topic} from two analysts.
+Report A focuses on: {summary}
+Report B focuses on: {summary}
+
+Your task:
+1. Identify points of agreement across both reports
+2. Identify contradictions and assess which source is more credible
+3. Identify unique insights that only one report contains
+4. Produce a unified analysis that incorporates the best of both
+```
+
+*3-agent variant:*
 ```
 You have received independent research reports on {topic} from three analysts.
 Report A focuses on: {summary}

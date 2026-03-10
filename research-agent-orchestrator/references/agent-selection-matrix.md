@@ -1,10 +1,12 @@
 # Agent Selection Matrix
 
-Capability profiles and routing heuristics for external research agents. Profiles reflect durable architectural strengths, not marketing claims. Re-evaluate periodically as models evolve.
+Capability profiles and routing heuristics for external research agents.
+
+> **Freshness notice:** Treat these profiles as heuristics, not fixed truth. Model capabilities, access methods, and platform features change frequently. Before routing a high-stakes task, verify current capabilities of the target platform — especially for recency, context limits, and tool access. Last reviewed: 2026-03.
 
 ## Capability Profiles
 
-### ChatGPT (GPT-4o / GPT-4.5)
+### ChatGPT
 
 | Dimension | Rating | Notes |
 |---|---|---|
@@ -13,22 +15,22 @@ Capability profiles and routing heuristics for external research agents. Profile
 | Reasoning quality | Good | Reliable for structured analysis |
 | Recency / live-web | Strong | Built-in web browsing with source citations |
 | Synthesis quality | Strong | Excels at structured summaries and comparisons |
-| Long-context handling | Good | 128K context; handles long inputs well |
+| Long-context handling | Good | Large context window; handles long inputs well (verify current limits) |
 | Execution-oriented | Good | Clear step-by-step outputs |
 | Ambiguity reduction | Good | Good at generating structured options |
 
 **Best for:** Structured synthesis, survey-style research, well-scoped technical questions, producing organized deliverables.
 
-### Gemini (2.5 Pro / Flash)
+### Gemini
 
 | Dimension | Rating | Notes |
 |---|---|---|
 | Breadth exploration | Strong | Google Search integration, broad knowledge |
 | Technical depth | Good | Solid but less consistent on niche technical topics |
-| Reasoning quality | Good | Improving; 2.5 Pro competitive on reasoning benchmarks |
+| Reasoning quality | Good | Competitive on reasoning benchmarks; improving rapidly |
 | Recency / live-web | Strong | Native Google Search, strong for recent information |
-| Synthesis quality | Good | Adequate but less polished than ChatGPT/Claude |
-| Long-context handling | Very strong | 1M+ token context; unmatched for large documents |
+| Synthesis quality | Good | Adequate but typically less polished than ChatGPT/Claude |
+| Long-context handling | Very strong | Among the largest context windows available (verify current limits) |
 | Execution-oriented | Good | Reasonable at action plans |
 | Ambiguity reduction | Good | Can digest large amounts of conflicting info |
 
@@ -49,16 +51,16 @@ Capability profiles and routing heuristics for external research agents. Profile
 
 **Best for:** Real-time / social signal research, trending topics, sentiment analysis, very recent events, community pulse on technical topics.
 
-### Claude (Opus / Sonnet)
+### Claude
 
 | Dimension | Rating | Notes |
 |---|---|---|
 | Breadth exploration | Good | Strong general knowledge |
 | Technical depth | Very strong | Excellent code reasoning and technical analysis |
-| Reasoning quality | Very strong | Best-in-class for nuanced analysis and tradeoffs |
-| Recency / live-web | Weak | No built-in web browsing in standard interface |
+| Reasoning quality | Very strong | Strong nuanced analysis and tradeoffs |
+| Recency / live-web | Varies | Depends on access method; standard chat has no built-in browsing, but tool-augmented deployments may differ |
 | Synthesis quality | Very strong | Excellent long-form writing and structured output |
-| Long-context handling | Strong | 200K context; very faithful to long inputs |
+| Long-context handling | Strong | Large context window; very faithful to long inputs (verify current limits) |
 | Execution-oriented | Strong | Clear, actionable outputs with good judgment |
 | Ambiguity reduction | Very strong | Excels at exploring nuance, caveats, tradeoffs |
 
@@ -108,7 +110,7 @@ START: What does the research primarily need?
 │   └─ Data + Analysis → Manus (collect) → Claude (synthesize)
 │
 └─ No clear winner?
-    └─ Default to ChatGPT (most versatile single-agent choice)
+    └─ Pick the agent with best general availability and broadest capability for the user's access (no fixed default — assess per-task)
 ```
 
 ## Single vs Multi-Agent Decision
@@ -126,7 +128,7 @@ START: What does the research primarily need?
 ## Anti-Patterns
 
 - **Don't use Grok for deep technical synthesis** — it's a recency/signal tool, not a reasoning engine.
-- **Don't use Claude for live web research** — no built-in browsing; pre-gather material first.
+- **Don't assume Claude can browse the web** — standard chat has no browsing; check the deployment context. Pre-gather material if browsing is unavailable.
 - **Don't send the same generic prompt to all agents** — tailor each prompt to the agent's strengths.
 - **Don't default to multi-agent when single suffices** — complexity has a cost (user effort, time).
 - **Don't hardcode "Agent X is always best for Y"** — capabilities evolve; use these as heuristics, not rules.

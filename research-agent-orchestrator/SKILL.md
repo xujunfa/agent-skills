@@ -98,6 +98,14 @@ For multi-agent plans, read `references/orchestration-patterns.md` for coordinat
 - When results return, hand off to `agent-research` for quality gating (Step 4 of that skill)
 - If results are insufficient, loop back to Phase 3 with adjusted prompts or Phase 2 with adjusted routing
 
+**Loop termination rules (mandatory):**
+- **Max 2 retry rounds.** After the initial dispatch + 2 retries (3 total attempts), stop looping.
+- **Escalation path:** If still insufficient after max retries:
+  1. Present the best results collected so far with a clear quality assessment.
+  2. Suggest a scope-narrowing or agent-downgrade option (e.g., single agent instead of multi-agent, or reduce research scope).
+  3. Ask the user to decide: accept partial results, adjust the question, or abandon.
+- **Immediate stop conditions:** Stop and report to the user if any retry produces results *worse* than the previous attempt, or if the user signals they want to stop.
+
 ## Edge Cases
 
 | Case | Action |
@@ -109,7 +117,14 @@ For multi-agent plans, read `references/orchestration-patterns.md` for coordinat
 | Serial workflow: early agent fails quality gate | Re-route that step to a different agent or adjust prompt |
 | No clear agent advantage for the topic | Default to single best-reasoner; note uncertainty |
 
+## Freshness Guardrails
+
+- Treat all agent capability profiles as **heuristics, not fixed truth**. Models, platforms, and access methods change frequently.
+- When recency matters for a routing decision, prefer a quick capability check (e.g., "does this agent currently have web browsing?") over relying solely on stored profiles.
+- After major model or platform updates, re-verify the selection matrix before relying on old routing assumptions.
+- Do not use absolute rankings ("best", "unmatched") in routing justifications — state the relevant capability and why it fits the task.
+
 ## Maintenance
 
-- **Version:** 1.0.0
+- **Version:** 1.1.0
 - **Created:** 2026-03-10
