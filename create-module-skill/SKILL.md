@@ -1,11 +1,15 @@
 ---
 name: create-module-skill
 description: >
-  Use when creating a new module-level knowledge Skill for a large frontend repository.
-  当用户提到 "创建模块 skill"|"为 XX 模块建知识库"|"create module skill"|
+  系统化地为大型前端仓库中的某个模块创建知识 Skill（SKILL.md 索引 + references/ 深度知识文件），
+  覆盖架构、数据模型、常见 Bug、开发模式、调试工具 5 个维度。产出的 Skill 让 Claude 在后续
+  bugfix 和 feature-dev 中获得 "30 秒判断" 能力——不再从零读代码。
+  当用户想为某个模块建立知识库时使用，即使用户没有明确说 "skill" 这个词也应该触发。
+  Triggers: "创建模块 skill"|"为 XX 模块建知识库"|"create module skill"|
   "新建模块 skill"|"给 XX 模块做 skill"|"module skill 模板"|
   "为这个模块创建开发指南"|"build knowledge base for module"|
-  "我想给 XX 模块做个知识索引" 时触发。
+  "我想给 XX 模块做个知识索引"|"document this module"|
+  "帮我梳理一下这个模块"|"给这个模块建个索引"|"create developer guide"。
 ---
 
 # 创建模块知识 Skill
@@ -23,9 +27,21 @@ description: >
 1. **严格按照下方 5 个 Step 顺序执行**，不要跳步
 2. 每个 Step 完成后，向用户展示产出并确认后再进入下一步
 3. **Step 1 和 Step 2 合并执行**：一次性读取代码，同时产出模块地图和 5 维度知识，避免重复读文件浪费 token
-4. 在 Step 3 填充模板时，读取 `references/skill-template.md` 获取标准模板
-5. 在 Step 3 填充 references 文件时，读取 `references/reference-templates.md` 获取各文件模板
-6. 完成后，读取 `references/quality-checklist.md` 逐项自检
+4. 在 Step 3 填充模板前，先读取 `references/example-output.md` 了解目标风格
+5. 在 Step 3 填充模板时，读取 `references/skill-template.md` 获取标准模板
+6. 在 Step 3 填充 references 文件时，读取 `references/reference-templates.md` 获取各文件模板
+7. 完成后，读取 `references/quality-checklist.md` 逐项自检
+
+## Edge Cases
+
+| 场景 | 处理方式 |
+|:--|:--|
+| 模块目录很小（< 5 文件） | 轻量模式：只生成 SKILL.md + 1-2 个最相关的 reference 文件 |
+| 模块极大（> 200 文件） | 聚焦顶层架构，建议按子模块拆分为多个 skill |
+| 无 git 历史 | 跳过 common-bugs 的 git 分析，完全依赖用户输入和代码静态分析 |
+| 用户无法提供领域知识 | 标注知识为 "未验证"，在 quality checklist 中标记，提醒后续补充 |
+| 同名 skill 已存在 | Step 0 已覆盖：覆盖 / 增量更新（→ update-module-skill）/ 中止 |
+| 无 types/constants 文件 | 省略 data-model.md 或仅包含最小化内容 |
 
 ## Step 0: 前置检查
 
@@ -118,3 +134,13 @@ description: >
    - 每次做需求后，补充到 `dev-patterns.md`（格式：需要修改的文件清单）
    - 如果触发有误触发或漏触发，调整 SKILL.md 的 description 关键词
    - 模块架构变更时及时更新 architecture.md
+
+## 维护与迭代（Living Document）
+
+本 Skill 自身也是 Living Document：
+- 模板不贴合实际产出 → 更新 `references/reference-templates.md` 或 `references/skill-template.md`
+- 质量检查项有遗漏 → 更新 `references/quality-checklist.md`
+- 新增或调整了 reference 文件 → 同步更新 SKILL.md 的 Claude 使用指令
+
+最近更新：2026-03-13 — P0 改进：重写 description、新增 Edge Cases、新增填充示例、新增 Living Document
+上次审计：2026-03-13 — 基于 skill-creator 框架做全面审查
