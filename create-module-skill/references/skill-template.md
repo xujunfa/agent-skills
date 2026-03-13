@@ -66,7 +66,9 @@ description: >
 - Claude 触发不准、读错文件、或建议不符实际 → 调整 `SKILL.md`
 
 系统性迭代请使用 `/update-module-skill`。
-当前版本：1.0.0
+
+最近更新：[YYYY-MM-DD] — [本次更新摘要]
+上次审计：[YYYY-MM-DD] — [审计结论摘要]
 ```
 
 ---
